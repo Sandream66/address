@@ -36,10 +36,11 @@ try:
             line.append(mobilephone)
             newcsv.append(line)
 
-        f = open("allcode.csv", "w")
-        writer = csv.writer(f, lineterminator='\n')
+        fh = open("allcode.csv", "w")
+        writer = csv.writer(fh, lineterminator='\n')
         writer.writerows(newcsv)
 
         f.close()
+        fh.close()
 except:
     print("no filename")
