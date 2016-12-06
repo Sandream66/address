@@ -1,0 +1,2 @@
+このコードはDjango Girls Japan 並びに　elv勉強会
+Python基礎基礎講座　クラスと関数を学ぼう用のコードです。
