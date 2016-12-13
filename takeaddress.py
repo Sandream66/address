@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# !/usr/bin/env python
 from makeaddress import MakeAddress
 
 
@@ -16,9 +17,9 @@ class TakeAddress(MakeAddress):
         for i in csvdic:
             line = []
             line.append(self.make_word(" ", i['firstname'], i['lastname']))
-            line.append(self.make_word(":", self.telname, i['phone']))
-            line.append(self.make_word(":", self.mobilename, i['mobilephone']))
-            line.append(self.make_word(":", self.zipcode, i['zip code']))
+            line.append(self.make_word(":", "固定電話", i['phone']))
+            line.append(self.make_word(":", "モバイル", i['mobilephone']))
+            line.append(self.make_word(":", "郵便番号", i['zip code']))
             line.append(self.make_word(
                                         "",
                                         i['address1'],
@@ -29,5 +30,5 @@ class TakeAddress(MakeAddress):
         return self.newcsv
 
 if __name__ == '__main__':
-    test = TakeAddress("郵便番号", "電話番号", "携帯番号")
+    test = TakeAddress("addresslist.csv")
     test.write_csv("takeaddress_new.csv")

@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
+# !/usr/bin/env python
 import csv
-import sys
 
 
 class MakeAddress():
 
-    def __init__(self, zipcode, telname, mobilename):
-        self.zipcode = zipcode
-        self.telname = telname
-        self.mobilename = mobilename
+    def __init__(self, filename):
         self.newcsv = []
-        self.filename = ""
+        self.filename = filename
 
     def get_filename(self, args):
         try:
@@ -39,23 +36,21 @@ class MakeAddress():
         for i in csvdic:
             line = []
             line.append(self.make_word(" ", i['firstname'], i['lastname']))
-            line.append(self.make_word(":", self.zipcode, i['zip code']))
+            line.append(self.make_word(":", "〒", i['zip code']))
             line.append(self.make_word(
                                         "",
                                         i['address1'],
                                         i['address2'],
                                         i['address3'],
                                     ))
-            line.append(self.make_word(":", self.telname, i['phone']))
-            line.append(self.make_word(":", self.mobilename, i['mobilephone']))
+            line.append(self.make_word(":", "電話番号", i['phone']))
+            line.append(self.make_word(":", "携帯番号", i['mobilephone']))
             self.newcsv.append(line)
         return self.newcsv
 
     def new_address(self):
-        args = sys.argv
-        filename = self.get_filename(args)
-        if filename:
-            csvdic = self.csv_reader(filename)
+        if self.filename:
+            csvdic = self.csv_reader(self.filename)
             newcsv = self.make_new_csv(csvdic)
             return newcsv
 
@@ -70,5 +65,5 @@ class MakeAddress():
             print("no filename")
 
 if __name__ == '__main__':
-    test = MakeAddress("郵便番号", "電話番号", "携帯番号")
+    test = MakeAddress("addresslist.csv")
     test.write_csv("makeaddress_new.csv")
