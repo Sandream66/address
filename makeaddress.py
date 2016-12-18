@@ -6,7 +6,6 @@ import csv
 class MakeAddress():
 
     def __init__(self, filename):
-        self.newcsv = []
         self.filename = filename
 
     def csv_reader(self, filename):
@@ -15,6 +14,7 @@ class MakeAddress():
         return reader
 
     def make_new_csv(self, csvdic):
+        newcsv = []
         top_list = [
                 'name',
                 'zip code',
@@ -22,7 +22,7 @@ class MakeAddress():
                 'phone',
                 'mobile_pyone'
                         ]
-        self.newcsv.append(top_list)
+        newcsv.append(top_list)
         for i in csvdic:
             line = []
             line.append(" ".join((i['lastname'], i['firstname'])))
@@ -30,8 +30,8 @@ class MakeAddress():
             line.append("".join((i['address1'], i['address2'], i['address3'])))
             line.append("：".join(("電話番号", i['phone'])))
             line.append("：".join(("携帯番号", i['mobilephone'])))
-            self.newcsv.append(line)
-        return self.newcsv
+            newcsv.append(line)
+        return newcsv
 
     def new_address(self):
         if self.filename:

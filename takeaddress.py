@@ -6,6 +6,7 @@ from makeaddress import MakeAddress
 class TakeAddress(MakeAddress):
 
     def make_new_csv(self, csvdic):
+        newcsv = []
         top_list = [
                 'name',
                 'phone',
@@ -13,7 +14,7 @@ class TakeAddress(MakeAddress):
                 'zip code',
                 'address'
                         ]
-        self.newcsv.append(top_list)
+        newcsv.append(top_list)
         for i in csvdic:
             line = []
             line.append(" ".join((i['lastname'], i['firstname'])))
@@ -21,8 +22,8 @@ class TakeAddress(MakeAddress):
             line.append("：".join(("MOBILE", i['mobilephone'])))
             line.append(":".join(("〒", i['zip code'])))
             line.append("".join((i['address1'], i['address2'], i['address3'])))
-            self.newcsv.append(line)
-        return self.newcsv
+            newcsv.append(line)
+        return newcsv
 
 if __name__ == '__main__':
     test = TakeAddress("addresslist.csv")
