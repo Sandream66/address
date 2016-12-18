@@ -8,8 +8,8 @@ class MakeAddress():
     def __init__(self, filename):
         self.filename = filename
 
-    def csv_reader(self, filename):
-        f = open(filename, 'r')
+    def csv_reader(self):
+        f = open(self.filename, 'r')
         reader = csv.DictReader(f)
         return reader
 
@@ -35,7 +35,7 @@ class MakeAddress():
 
     def new_address(self):
         if self.filename:
-            csvdic = self.csv_reader(self.filename)
+            csvdic = self.csv_reader()
             newcsv = self.make_new_csv(csvdic)
             return newcsv
 
