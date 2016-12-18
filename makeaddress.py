@@ -9,13 +9,6 @@ class MakeAddress():
         self.newcsv = []
         self.filename = filename
 
-    def get_filename(self, args):
-        try:
-            self.filename = args[1]
-        except:
-            pass
-        return self.filename
-
     def csv_reader(self, filename):
         f = open(filename, 'r')
         reader = csv.DictReader(f)
