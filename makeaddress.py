@@ -21,9 +21,6 @@ class MakeAddress():
         reader = csv.DictReader(f)
         return reader
 
-    def make_word(self, string, *args):
-        return string.join(args)
-
     def make_new_csv(self, csvdic):
         top_list = [
                 'name',
@@ -35,16 +32,11 @@ class MakeAddress():
         self.newcsv.append(top_list)
         for i in csvdic:
             line = []
-            line.append(self.make_word(" ", i['firstname'], i['lastname']))
-            line.append(self.make_word(":", "〒", i['zip code']))
-            line.append(self.make_word(
-                                        "",
-                                        i['address1'],
-                                        i['address2'],
-                                        i['address3'],
-                                    ))
-            line.append(self.make_word(":", "電話番号", i['phone']))
-            line.append(self.make_word(":", "携帯番号", i['mobilephone']))
+            line.append(" ".join((i['lastname'], i['firstname'])))
+            line.append(":".join(("郵便番号", i['zip code'])))
+            line.append("".join((i['address1'], i['address2'], i['address3'])))
+            line.append("：".join(("電話番号", i['phone'])))
+            line.append("：".join(("携帯番号", i['mobilephone'])))
             self.newcsv.append(line)
         return self.newcsv
 

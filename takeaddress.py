@@ -16,16 +16,11 @@ class TakeAddress(MakeAddress):
         self.newcsv.append(top_list)
         for i in csvdic:
             line = []
-            line.append(self.make_word(" ", i['firstname'], i['lastname']))
-            line.append(self.make_word(":", "固定電話", i['phone']))
-            line.append(self.make_word(":", "モバイル", i['mobilephone']))
-            line.append(self.make_word(":", "郵便番号", i['zip code']))
-            line.append(self.make_word(
-                                        "",
-                                        i['address1'],
-                                        i['address2'],
-                                        i['address3'],
-                                    ))
+            line.append(" ".join((i['lastname'], i['firstname'])))
+            line.append("：".join(("TEL", i['phone'])))
+            line.append("：".join(("MOBILE", i['mobilephone'])))
+            line.append(":".join(("〒", i['zip code'])))
+            line.append("".join((i['address1'], i['address2'], i['address3'])))
             self.newcsv.append(line)
         return self.newcsv
 
