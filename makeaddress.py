@@ -9,19 +9,19 @@ class MakeAddress():
         self.filename = filename
 
     def csv_reader(self):
-        f = open(self.filename, 'r')
+        f = open(self.filename, 'r', encoding='sjis')
         reader = csv.DictReader(f)
         return reader
 
     def make_new_csv(self, csvdic):
         newcsv = []
         top_list = [
-                'name',
-                'zip code',
-                'address',
-                'phone',
-                'mobile_pyone'
-                        ]
+            'name',
+            'zip code',
+            'address',
+            'phone',
+            'mobile_phone',
+        ]
         newcsv.append(top_list)
         for i in csvdic:
             line = []
@@ -40,14 +40,11 @@ class MakeAddress():
             return newcsv
 
     def write_csv(self, newfilename):
+        assert self.filename, "no filename"
         newcsv = self.new_address()
-        if self.filename:
-            f = open(newfilename, "w")
+        with open(newfilename, "w") as f:
             writer = csv.writer(f, lineterminator='\n')
             writer.writerows(newcsv)
-            f.close()
-        else:
-            print("no filename")
 
 if __name__ == '__main__':
     test = MakeAddress("addresslist.csv")
